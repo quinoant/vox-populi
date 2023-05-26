@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db2:
+    image: mysql/mysql-server:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: quinoant
+      MYSQL_DATABASE: journal_db
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - journaldat:/var/lib/mysql
+    ports:
+      - "60066:3306"
+volumes:
+  journaldat:
