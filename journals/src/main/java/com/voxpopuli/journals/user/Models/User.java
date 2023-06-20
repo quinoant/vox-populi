@@ -1,22 +1,35 @@
 package com.voxpopuli.journals.user.Models;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.voxpopuli.journals.journals.Models.Journal;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name = "user")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer userID;
-  //@OneToOne(mappedBy = "user")
-  //private Birdfeeder birdfeeder;
+  private long user_id;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "pc_fid", referencedColumnName = "user_id")
+  private Set<Journal> journals = new HashSet<>();
+
   private String username;
   private String password;
   private String firstName;
@@ -25,12 +38,16 @@ public class User {
   public User() {
   }
 
-  public Integer getUserID() {
-    return this.userID;
+  public void addJournals(Journal journal){
+    journals.add(journal);
   }
 
-  public void setUserID(Integer userID) {
-    this.userID = userID;
+  public long getUser_id() {
+    return this.user_id;
+  }
+
+  public void setUser_id(long userID) {
+    this.user_id = userID;
   }
 
   public String getUsername() {
