@@ -1,4 +1,4 @@
-package com.voxpopuli.journals.user.Controllers;
+package com.voxpopuli.journals.journals.Controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,30 +14,30 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.voxpopuli.journals.user.Models.User;
-import com.voxpopuli.journals.user.Models.UserRepository;
+import com.voxpopuli.journals.journals.Models.Journal;
+import com.voxpopuli.journals.journals.Models.JournalRepository;
 
 @RestController
-@RequestMapping("/api/v1/users")
-public class UsersController {
+@RequestMapping("/api/v1/journals")
+public class JournalsController {
 
     @Autowired
-    private UserRepository userRepository;
+    private JournalRepository journalRepository;
 
     @GetMapping
-    public List<User> list(){
-        return userRepository.findAll();
+    public List<Journal> list(){
+        return journalRepository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void create(@RequestBody User user){
-        userRepository.save(user);
+    public void create(@RequestBody Journal journal){
+        journalRepository.save(journal);
     }
 
     @GetMapping("/{id}")
-    public User get(@PathVariable("id") long id){
-        return userRepository.getReferenceById(id);
+    public Journal get(@PathVariable("id") long id){
+        return journalRepository.getReferenceById(id);
     }
     // /**
     //  * This method is used to register a user
