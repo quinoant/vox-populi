@@ -10,21 +10,11 @@ public class Journal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer journalID;
 
-    private Integer userID;
-
     private String entryDate;
 
     private String releaseDate;
 
     private String content;
-
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
 
     public String getEntryDate() {
         return entryDate;

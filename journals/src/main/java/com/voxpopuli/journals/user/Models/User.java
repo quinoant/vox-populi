@@ -15,23 +15,10 @@ public class User {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer userID;
-  //@OneToOne(mappedBy = "user")
-  //private Birdfeeder birdfeeder;
   private String username;
   private String password;
   private String firstName;
   private String lastName;
-
-  public User() {
-  }
-
-  public Integer getUserID() {
-    return this.userID;
-  }
-
-  public void setUserID(Integer userID) {
-    this.userID = userID;
-  }
 
   public String getUsername() {
     return this.username;
@@ -63,9 +50,5 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public void remove(User user){
-    
   }
 }
