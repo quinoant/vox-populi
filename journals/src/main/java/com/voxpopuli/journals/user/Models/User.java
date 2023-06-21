@@ -28,6 +28,7 @@ public class User {
   private String firstName;
   private String lastName;
 
+
   public User() {}
 
   public void addJournals(Journal journal){
@@ -42,14 +43,10 @@ public class User {
     return journals;
   }
 
-  public Integer getUserID() {
+  public Integer getUserID(){
     return this.userID;
   }
-
-  public void setUserID(Integer userID) {
-    this.userID = userID;
-  }
-
+  
   public String getUsername() {
     return this.username;
   }
@@ -80,9 +77,5 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public void remove(User user){
-    
   }
 }
