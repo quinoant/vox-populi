@@ -1,13 +1,19 @@
 package com.voxpopuli.journals.user.Models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.voxpopuli.journals.journals.Models.Journal;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 //import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity // This tells Hibernate to make a table out of this class
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -15,14 +21,25 @@ public class User {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer userID;
-  //@OneToOne(mappedBy = "user")
-  //private Birdfeeder birdfeeder;
+  @OneToMany(cascade = CascadeType.ALL)
+  private Set<Journal> journals = new HashSet<>();
   private String username;
   private String password;
   private String firstName;
   private String lastName;
 
-  public User() {
+  public User() {}
+
+  public void addJournals(Journal journal){
+    journals.add(journal);
+  }
+
+  public Integer getJournalCount(){
+    return journals.size();
+  }
+
+  public Set<Journal> getJournals() {
+    return journals;
   }
 
   public Integer getUserID() {
