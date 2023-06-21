@@ -20,6 +20,10 @@ public class User {
   private String firstName;
   private String lastName;
 
+  public Integer getUserID(){
+    return this.userID;
+  }
+  
   public String getUsername() {
     return this.username;
   }
