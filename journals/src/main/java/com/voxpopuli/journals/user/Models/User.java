@@ -27,7 +27,6 @@ public class User {
   private long user_id;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "pc_fid", referencedColumnName = "user_id")
   private Set<Journal> journals = new HashSet<>();
 
   private String username;
@@ -40,6 +39,10 @@ public class User {
 
   public void addJournals(Journal journal){
     journals.add(journal);
+  }
+
+  public Set<Journal> getJournals() {
+    return journals;
   }
 
   public long getUser_id() {
