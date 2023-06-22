@@ -35,6 +35,11 @@ public class UsersController {
         return userRepository.findAll();
     }
 
+    @GetMapping("/allJournals")
+    public List<Journal> get(){
+        return journalRepository.findAll();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public void create(@RequestBody User user){
@@ -55,9 +60,9 @@ public class UsersController {
     }
 
     @GetMapping("/getJournals/{id}")
-    public Integer getUserJournals(@PathVariable("id") long id){
+    public Set<Journal> getUserJournals(@PathVariable("id") long id){
         User user =  userRepository.getReferenceById(id);
-        return user.getJournalCount();
+        return user.getJournals();
     }
     // /**
     //  * This method is used to register a user
